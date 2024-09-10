@@ -48,3 +48,8 @@ document.querySelector('a[href="#about"]').addEventListener('click', function(ev
   event.preventDefault(); // Impede o comportamento padrão do link
   scrollToSection('#about'); // Rola suavemente até a seção "Quem somos"
 });
+
+document.querySelector('a[href="#contact"]').addEventListener('click', function(event) {
+  event.preventDefault(); // Impede o comportamento padrão do link
+  scrollToSection('#contact'); // Rola suavemente até a seção "Contato"
+});
