@@ -1,0 +1,436 @@
+/* Estilos globais */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'); /* Importa a fonte Roboto */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Estilos whatsapp */
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    transition: transform 0.3s ease; /* Adiciona uma transição suave */
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do ícone em 10% ao passar o mouse */
+}
+
+/* Estilo Moderno do Menu */
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+header {
+    background-color: #1e1e1e; /* Mantém a cor do menu igual ao rodapé */
+    color: #fff;
+    padding: 20px 40px; /* Adiciona padding para garantir espaço interno */
+    display: flex; /* Alinha os elementos dentro do cabeçalho em uma linha */
+    align-items: center; /* Centraliza verticalmente a logo e o menu */
+    justify-content: space-between; /* Espaça a logo à esquerda e o menu à direita */
+}
+
+.logo {
+    flex: 1; /* Permite que o logo ocupe o espaço necessário */
+}
+
+.logo img {
+    width: 200px; /* Ajusta o tamanho da logo */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.navbar {
+    flex: 1;
+    text-align: right; /* Alinha o menu à direita */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block; /* Garante que o menu esteja na mesma linha */
+}
+
+.navbar ul li {
+    display: inline;
+    margin-left: 30px; /* Espaçamento entre os itens do menu */
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid transparent; /* Linha de fundo invisível inicialmente */
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    border-bottom: 2px solid #ff7a00; /* Aplica uma linha laranja ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento ao passar o mouse */
+}
+
+/* Logo do Menu */
+.logo {
+    display: flex;
+    align-items: center; /* Centraliza a logo verticalmente */
+    margin-right: 30px; /* Espaçamento à direita da logo */
+}
+
+.logo img {
+    max-width: 300px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+
+/* Imagem Principal */
+.main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Seção de Serviços */
+.services-section {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-item {
+    background-color: #000;
+    color: #fff;
+    width: 220px;
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-image {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-item h3 {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.service-item p {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.4;
+    color: #fff;
+    padding: 0 10px;
+    margin-bottom: 0;
+}
+
+/* Estilo do Título da Seção */
+.services-section h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Seção Assessoria Especializada */
+.specialized-section {
+    background-color: #fff;
+    color: #333;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.specialized-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.specialized-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Seção do Carrossel */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+  padding: 8px;
+  text-align: center;
+  transition: opacity 1s ease; /* Adicione a transição suave para opacidade */
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Fundo do Carrossel */
+.carousel-section {
+    background-color: #000; /* Cor preta para o fundo do carrossel */
+}
+
+.slideshow-container {
+    background-color: #000; /* Cor preta para o fundo interno do carrossel */
+    padding: 20px; /* Adiciona um pouco de espaçamento ao redor das imagens */
+}
+
+/* Estilos para o texto do carrossel */
+.carousel-text {
+    color: #333; /* Cor branca para o texto */
+    text-align: left;
+    position: absolute;
+    bottom: 20px; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: rgb(255, 255, 255); /* Fundo semitransparente */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.carousel-text h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.carousel-text p {
+    margin: 5px 0 0;
+    font-size: 20px;
+}
+
+/* Seção Quem Somos */
+.about-section {
+    background-color: #000; /* Mesmo fundo da seção acima */
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    gap: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.profile-text {
+    text-align: left;
+    color: #fff;
+}
+
+.profile-text h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.profile-text p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Seção Missão, Visão e Valores */
+.mission-vision-values-section {
+    background-color: #000; /* Mantém o fundo preto */
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.divider {
+    border-top: 2px dotted #fff;
+    width: 80%;
+    margin: 0 auto 40px auto;
+}
+
+.mvv-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.mvv-item {
+    max-width: 300px;
+    text-align: center;
+}
+
+.mvv-item h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.mvv-item p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Estilo do Rodapé */
+footer {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o conteúdo */
+    justify-content: space-between; /* Distribui espaço entre os elementos */
+    gap: 20px;
+}
+
+.footer-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center; /* Centraliza a imagem verticalmente */
+}
+
+.footer-contact {
+    flex: 1;
+    text-align: center; /* Centraliza o texto de contato */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Centraliza o texto e ícones de redes sociais */
+.social-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    gap: 10px;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px; /* Espaçamento entre os ícones */
+}
+
+footer .social-icons a {
+    margin: 0 5px;
+}
+
+footer .social-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+.certification-logo {
+    max-width: 200px;
+    height: auto;
+}
