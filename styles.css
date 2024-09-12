@@ -20,6 +20,54 @@ body {
     padding: 20px 0;
 }
 
+/* Estilos Botão Sistema */
+
+.floating-button.rectangular-button {
+    position: fixed;
+    bottom: 100px; /* Ajuste conforme necessário */
+    right: 20px; /* Ajuste conforme necessário */
+    background-color: hsl(0, 0%, 100%); /* Cor de fundo */
+    color: white; /* Cor do texto */
+    width: 60px; /* Largura inicial */
+    height: 60px; /* Altura inicial */
+    border-radius: 50%; /* Bordas arredondadas para ser redondo */
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+    z-index: 1000; /* Para garantir que fique acima de outros elementos */
+    transition: all 0.3s; /* Transição suave para todas as propriedades */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black; /* Borda preta */
+}
+
+.floating-button.rectangular-button:hover {
+    width: 60px; /* Largura automática para ajustar ao texto */
+    height: 60px; /* Altura automática para ajustar ao texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    background-color: hsl(0, 0%, 100%); /* Cor de fundo ao passar o mouse */
+}
+
+.floating-button.rectangular-button:hover .button-icon {
+    display: none; /* Esconder a imagem ao passar o mouse */
+}
+
+.floating-button.rectangular-button:hover::after {
+    content: "Simule aqui"; /* Texto ao passar o mouse */
+    display: inline-block;
+    color: black; /* Cor do texto */
+
+}
+
+/* Estilo para a imagem dentro do botão */
+.button-icon {
+    width: 30px; /* Ajuste conforme necessário */
+    height: 30px; /* Ajuste conforme necessário */
+}
+
+
 /* Estilos whatsapp */
 
 .whatsapp-float {
