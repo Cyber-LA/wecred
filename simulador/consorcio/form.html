@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Empréstimo</title>
+    <link rel="stylesheet" href="./../styles.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="btn.css">
+    <!-- Adiciona Cleave.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="./../images/logo-preto-wecred.jpg" alt="wecred logo">
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <h1>Consórcio</h1>
+        <p>Quais os Valores da Operação?</p>
+        <form action="dados.html" method="post" class="styled-form">
+            <!-- Campo Valor da Carta -->
+            <div class="form-group">
+                <label for="valor-carta">Valor da Carta</label>
+                <input type="text" id="valor-carta" name="valor-carta" placeholder="Digite o valor da carta" required>
+            </div>
+            <!-- Campo Valor de Lance -->
+            <div class="form-group">
+                <label for="valor-lance">Valor de Lance</label>
+                <input type="text" id="valor-lance" name="valor-lance" placeholder="Digite o valor de lance" required>
+            </div>
+            <!-- Campo Lance Embutido -->
+            <div class="form-group">
+                <label for="lance-embutido">Lance embutido?</label>
+                <select id="lance-embutido" name="lance-embutido" required>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <!-- Botões -->
+            <div class="form-buttons">
+                <a href="meses.html">
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Aplica a máscara de moeda no campo "Valor da Carta"
+            new Cleave('#valor-carta', {
+                numeral: true,
+                numeralDecimalMark: ',',
+                delimiter: '.',
+                numeralThousandsGroupStyle: 'thousand',
+                prefix: 'R$ ',
+                noImmediatePrefix: false,
+                rawValueTrimPrefix: true,
+                numeralPositiveOnly: true
+            });
+    
+            // Aplica a máscara de moeda no campo "Valor de Lance"
+            new Cleave('#valor-lance', {
+                numeral: true,
+                numeralDecimalMark: ',',
+                delimiter: '.',
+                numeralThousandsGroupStyle: 'thousand',
+                prefix: 'R$ ',
+                noImmediatePrefix: false,
+                rawValueTrimPrefix: true,
+                numeralPositiveOnly: true
+            });
+        });
+    </script>
+
+</body>
+</html> 
