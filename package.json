@@ -1,0 +1,25 @@
+{
+  "name": "wecred",
+  "version": "1.0.0",
+  "description": "wecred site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyber-LA/wecred.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cyber-LA/wecred/issues"
+  },
+  "homepage": "https://github.com/Cyber-LA/wecred#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nodemailer": "^6.9.15"
+  }
+}
