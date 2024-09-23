@@ -101,3 +101,21 @@ p {
         max-width: 300px;
     }
 }
+
+/* Option utilizado em botões de meses */
+.option_meses {
+    width: 180px;
+    height: 180px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Remove sublinhado dos links */
+    color: inherit; /* Mantém a cor do texto original */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+    line-height: 0.5; /* Ajusta o espaço necessário entre linhas */
+}
