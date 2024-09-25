@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Empréstimo</title>
+    <link rel="stylesheet" href="./../styles.css">
+    <link rel="stylesheet" href="./../home_equity/form.css">
+    <link rel="stylesheet" href="./../home_equity/btn.css">
+    <!-- Adiciona Cleave.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="./../images/logo-preto-wecred.jpg" alt="wecred logo">
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <h1>Home Equity</h1>
+        <p>Quais os Valores da Operação?</p>
+        <form action="./../home_equity/averbado.html" method="post" class="styled-form">
+            <!-- Campo Valor Aproximado -->
+            <div class="form-group">
+                <label for="valor-aprox">Valor Aproximado do Imóvel?</label>
+                <input type="text" id="valor-aprox" name="valor-aprox" placeholder="Digite o valor aproximado do imóvel" required>
+            </div>
+            <!-- Campo Valor do Emprestimo -->
+            <div class="form-group">
+                <label for="valor-emprestimo">Valor do Empréstimo</label>
+                <input type="text" id="valor-emprestimo" name="valor-emprestimo" placeholder="Digite o valor do emprestimo" required>
+            </div>
+           
+            <!-- Botões -->
+            <div class="form-buttons">
+                <a href="meses.html">
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Aplica a máscara de moeda no campo "Valor Aproximado"
+            new Cleave('#valor-aprox', {
+                numeral: true,
+                numeralDecimalMark: ',',
+                delimiter: '.',
+                numeralThousandsGroupStyle: 'thousand',
+                prefix: 'R$ ',
+                noImmediatePrefix: false,
+                rawValueTrimPrefix: true,
+                numeralPositiveOnly: true
+            });
+    
+            // Aplica a máscara de moeda no campo "Valor do Empréstimo"
+            new Cleave('#valor-emprestimo', {
+                numeral: true,
+                numeralDecimalMark: ',',
+                delimiter: '.',
+                numeralThousandsGroupStyle: 'thousand',
+                prefix: 'R$ ',
+                noImmediatePrefix: false,
+                rawValueTrimPrefix: true,
+                numeralPositiveOnly: true
+            });
+        });
+    </script>
+
+</body>
+</html> 
