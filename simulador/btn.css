@@ -1,6 +1,12 @@
-.form-buttons {
+.form-buttons-form {
     display: flex;
     justify-content: space-between;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
 }
 
 .btn {
