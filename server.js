@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
   service: 'hotmail', // ou outro serviço de e-mail
   auth: {
-    user: 'junior1991_5@hotmail.com', // seu e-mail
-    pass: 'sqluol2015', // sua senha de e-mail
+    user: 'teste@hotmail.com', // seu e-mail
+    pass: 'teste', // sua senha de e-mail
   },
 });
 
@@ -27,8 +27,8 @@ app.post('/enviar-email', (req, res) => {
 
   // Configuração do e-mail a ser enviado
   const mailOptions = {
-    from: 'junior1991_5@hotmail.com', // Seu endereço de e-mail
-    to: 'junior1991_5@hotmail.com', // E-mail de destino
+    from: 'teste@hotmail.com', // Seu endereço de e-mail
+    to: 'teste@hotmail.com', // E-mail de destino
     subject: 'Dados do Formulário',
     text: `
       Nome Completo: ${nome}
