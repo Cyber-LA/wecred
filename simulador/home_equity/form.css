@@ -18,7 +18,7 @@
 }
 
 .form-group label {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-weight: bold;
     color: #333;
 }
@@ -33,4 +33,75 @@
 
 input::placeholder {
     color: #aaa;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.range-labels span {
+    text-align: center;
+}
+
+/* Ajuste para garantir que o slider encoste nas extremidades */
+input[type="range"] {
+    -webkit-appearance: none; /* Remove a aparência padrão do slider no Chrome/Safari */
+    appearance: none;
+    width: 100%; /* Garante que o slider ocupe 100% da largura do container */
+    height: 8px; /* Altura da barra do slider */
+    background: #ddd; /* Cor da barra */
+    border-radius: 5px; /* Arredondamento da barra */
+    outline: none; /* Remove o outline padrão */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para a "thumb" (botão que você arrasta) do slider */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* Tamanho da "thumb" */
+    height: 20px;
+    background: #000000; /* Cor da "thumb" */
+    cursor: pointer;
+    border-radius: 50%; /* Deixa a "thumb" arredondada */
+    margin-top: -6px; /* Alinha a "thumb" com a barra do slider */
+    position: relative;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #000000; /* Cor da "thumb" para navegadores Firefox */
+    cursor: pointer;
+    border-radius: 50%; /* Deixa a "thumb" arredondada */
+    position: relative;
+}
+
+input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Adicional para navegadores antigos (Internet Explorer) */
+input[type="range"]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Estilo para o aviso */
+.form-group small {
+    font-size: 0.70rem;
+    margin-top: 5px;
+    color: rgb(0, 0, 0);
 }
