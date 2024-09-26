@@ -27,17 +27,18 @@
             <div class="form-group">
                 <label for="valor-aprox">Valor Aproximado do Imóvel?</label>
                 <input type="text" id="valor-aprox" name="valor-aprox" placeholder="Digite o valor aproximado do imóvel" required>
+                <small>Valor mínimo R$ 125.000</small> <!-- Adicionado o aviso -->
             </div>
 
             <!-- Barra de Slider Dinâmica -->
             <div class="form-group">
                 <label for="slider-emprestimo">Valor do Empréstimo</label>
-                <input type="range" id="slider-emprestimo" name="slider-emprestimo" min="1000" value="0" step="1000" oninput="atualizarValorEmprestimo(this.value)">
+                <input type="range" id="slider-emprestimo" name="slider-emprestimo" min="50000" value="0" step="1000" oninput="atualizarValorEmprestimo(this.value)">
                 <div class="range-labels">
-                    <span>Valor mínimo<br>R$ 1.000,00</span>
+                    <span>Valor mínimo<br>R$ 50.000,00</span>
                     <span>Valor máximo<br><span id="valor-maximo">R$ 0,00</span></span>
                 </div>
-                <input type="text" id="valor-emprestimo" name="valor-emprestimo" value="R$ 1.000,00" readonly>
+                <input type="text" id="valor-emprestimo" name="valor-emprestimo" value="R$ 50.000,00" readonly>
             </div>
            
             <!-- Botões -->

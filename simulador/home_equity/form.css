@@ -98,3 +98,10 @@ input[type="range"]::-ms-track {
     border-color: transparent;
     color: transparent;
 }
+
+/* Estilo para o aviso */
+.form-group small {
+    font-size: 0.70rem;
+    margin-top: 5px;
+    color: rgb(0, 0, 0);
+}
