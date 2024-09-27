@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail', // ou outro serviço de e-mail
   auth: {
-    user: 'juunioor.romano@gmail.com', // seu e-mail
-    pass: 'kufe ttsl ujxd fdxp', // sua senha de e-mail
+    user: 'formulario.012@gmail.com', // seu e-mail
+    pass: 'lpgh xbwh fbjj gbbi', // sua senha de e-mail
   },
 });
 
@@ -48,9 +48,9 @@ app.post('/enviar-email', (req, res) => {
 
   // Configuração do e-mail a ser enviado
   const mailOptions = {
-    from: 'juunioor.romano@hotmail.com', // Seu endereço de e-mail
-    to: 'junior1991_5@hotmail.com', // E-mail de destino
-    subject: 'Dados do Formulário e Escolhas Anteriores',
+    from: 'formulario.012@gmail.com', // Seu endereço de e-mail
+    to: 'central@wecredassessoria.com.br', // E-mail de destino
+    subject: 'Dados do Formulário',
     html: `
       <h3>Dados do Formulário:</h3>
       <p><strong>Nome Completo:</strong> ${nome}</p>

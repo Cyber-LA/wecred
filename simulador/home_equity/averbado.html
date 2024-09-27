@@ -23,13 +23,13 @@
         <!-- Opções de Crédito Home Equity -->
         <div class="options">
             <!-- Opção 1: Sim -->
-            <a href="./../home_equity/resp_sim.html" class="option">
+            <a href="./../home_equity/resp_sim.html" class="option" onclick="capturarEscolha('Sim')">
                 <img src="./../images/sim.png" alt="Sim">
                 <p>Sim</p>
             </a>
 
             <!-- Opção 2: Não -->
-            <a href="./../home_equity/resp_nao.html" class="option">
+            <a href="./../home_equity/resp_nao.html" class="option" onclick="capturarEscolha('Não')">
                 <img src="./../images/nao.png" alt="Não">
                 <p>Não</p>
             </a>
@@ -42,6 +42,20 @@
             </a>
         </div>
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>
