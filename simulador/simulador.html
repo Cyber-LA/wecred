@@ -22,24 +22,38 @@
         <!-- Opções de Crédito -->
         <div class="options">
             <!-- Opção 1: Comprar Imóvel -->
-            <a href="financiamento/financiamento.html" class="option">
+            <a href="financiamento/financiamento.html" class="option" onclick="capturarEscolha('Comprar Imóvel')">
                 <img src="images/financiamento.png" alt="Comprar Imóvel">
                 <p>Quero comprar meu imóvel</p>
             </a>
 
             <!-- Opção 2: Empréstimo com Imóvel -->
-            <a href="home_equity/home_equity.html" class="option">
+            <a href="home_equity/home_equity.html" class="option" onclick="capturarEscolha('Empréstimo com Imóvel')">
                 <img src="images/home_equity.png" alt="Empréstimo com Imóvel">
                 <p>Quero empréstimo usando meu imóvel</p>
             </a>
 
             <!-- Opção 3: Consórcio -->
-            <a href="consorcio/tipo.html" class="option">
+            <a href="consorcio/tipo.html" class="option" onclick="capturarEscolha('Consórcio')">
                 <img src="images/consorcio.png" alt="Consórcio">
                 <p>Quero um Consórcio</p>
             </a>
         </div>
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas na primeira página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

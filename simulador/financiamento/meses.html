@@ -23,30 +23,30 @@
         <!-- Opções de Financiamento - Meses -->
         <div class="options">
             <!-- Opção 1: 120 Meses -->
-            <a href="form.html" class="option_meses">
+            <a href="form.html" class="option_meses" onclick="capturarEscolha('120 Meses')">
                 <p> <span style="font-family: 'Candara', serif; font-size: 60px; color: #363636; font-weight: bold;">120</span> </p>
                 <p> <span style="font-family: 'Times New Roman', serif; font-size: 25px; color: #363636; font-weight: bold;">Meses</span> </p>
             </a> 
             <!-- Opção 2: 180 Meses -->
-            <a href="form.html" class="option_meses">
+            <a href="form.html" class="option_meses" onclick="capturarEscolha('180 Meses')">
                 <p> <span style="font-family: 'Candara', serif; font-size: 60px; color: #363636; font-weight: bold;">180</span> </p>
                 <p> <span style="font-family: 'Times New Roman', serif; font-size: 25px; color: #363636; font-weight: bold;">Meses</span> </p>
             </a>
 
             <!-- Opção 3: 240 Meses -->
-            <a href="form.html" class="option_meses">
+            <a href="form.html" class="option_meses" onclick="capturarEscolha('240 Meses')">
                 <p> <span style="font-family: 'Candara', serif; font-size: 60px; color: #363636; font-weight: bold;">240</span> </p>
                 <p> <span style="font-family: 'Times New Roman', serif; font-size: 25px; color: #363636; font-weight: bold;">Meses</span> </p>
             </a>
 
             <!-- Opção 4: 360 Meses -->
-            <a href="form.html" class="option_meses">
+            <a href="form.html" class="option_meses" onclick="capturarEscolha('360 Meses')">
                 <p> <span style="font-family: 'Candara', serif; font-size: 60px; color: #363636; font-weight: bold;">360</span> </p>
                 <p> <span style="font-family: 'Times New Roman', serif; font-size: 25px; color: #363636; font-weight: bold;">Meses</span> </p>
             </a>
 
             <!-- Opção 5: 420 Meses -->
-            <a href="form.html" class="option_meses">
+            <a href="form.html" class="option_meses" onclick="capturarEscolha('420 Meses')">
                 <p> <span style="font-family: 'Candara', serif; font-size: 60px; color: #363636; font-weight: bold;">420</span> </p>
                 <p> <span style="font-family: 'Times New Roman', serif; font-size: 25px; color: #363636; font-weight: bold;">Meses</span> </p>
             </a>   
@@ -60,6 +60,20 @@
         </div> 
 
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>
