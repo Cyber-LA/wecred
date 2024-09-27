@@ -23,25 +23,25 @@
         <!-- Opções de Objetivo Home Equity -->
         <div class="options">
             <!-- Opção 1: Quitar Divida -->
-            <a href="./../home_equity/meses.html" class="option">
+            <a href="./../home_equity/meses.html" class="option" onclick="capturarEscolha('Quitar Divida')">
                 <img src="./../images/quitar.png" alt="Quitar Divida">
                 <p>Quitar Divida</p>
             </a>
 
             <!-- Opção 2: Investir -->
-            <a href="./../home_equity/meses.html" class="option">
+            <a href="./../home_equity/meses.html" class="option" onclick="capturarEscolha('Investir')">
                 <img src="./../images/investimento.png" alt="Investir">
                 <p>Investir</p>
             </a>
 
             <!-- Opção 3: Capital de Giro -->
-            <a href="./../home_equity/meses.html" class="option">
+            <a href="./../home_equity/meses.html" class="option" onclick="capturarEscolha('Capital de Giro')">
                 <img src="./../images/capital.png" alt="Capital de Giro">
                 <p>Capital de Giro</p>
             </a>
 
             <!-- Opção 4: Outros -->
-             <a href="./../home_equity/meses.html" class="option">
+             <a href="./../home_equity/meses.html" class="option" onclick="capturarEscolha('Outros')">
                 <img src="./../images/outros.png" alt="Outros">
                 <p>Outros</p>
             </a>
@@ -55,6 +55,20 @@
         </div>
 
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

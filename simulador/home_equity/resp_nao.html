@@ -52,6 +52,24 @@
                 rawValueTrimPrefix: true,
                 numeralPositiveOnly: true
             });
+
+            // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function() {
+                // Capturar os valores dos campos
+                const valorAberto = document.getElementById('valor-aberto').value;
+
+                // Recupera as escolhas atuais do sessionStorage
+                let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+                // Adiciona os valores digitáveis
+                escolhas.push({
+                    'Valor em Aberto': valorAberto,
+                });
+
+                // Salva novamente no sessionStorage
+                sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+            });
     
         });
     </script>

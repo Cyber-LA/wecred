@@ -23,13 +23,13 @@
         <!-- Opções de Financiamento -->
         <div class="options">
             <!-- Opção 1: Já tenho imóvel -->
-            <a href="./../dados/dados.html" class="option">
+            <a href="./../dados/dados.html" class="option" onclick="capturarEscolha('Já tenho imóvel escolhido')">
                 <img src="./../images/tenho_imovel.png" alt="ja tenho imovel escolhido">
                 <p>Já tenho imóvel escolhido</p>
             </a>
 
-            <!-- Opção 2: Apartamento -->
-            <a href="./../dados/dados.html" class="option">
+            <!-- Opção 2: Estou procurando um imóvel -->
+            <a href="./../dados/dados.html" class="option" onclick="capturarEscolha('Estou procurando um imóvel')">
                 <img src="./../images/casa-de-busca.png" alt="estou procurando um imovel">
                 <p>Estou procurando um imóvel</p>
             </a>
@@ -43,6 +43,20 @@
         </div> 
 
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

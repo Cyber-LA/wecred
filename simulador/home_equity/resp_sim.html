@@ -23,13 +23,13 @@
         <!-- Opções de Resposta Sim-->
         <div class="options">
             <!-- Opção 1: Financiado -->
-            <a href="./../home_equity/resp_nao.html" class="option">
+            <a href="./../home_equity/resp_nao.html" class="option" onclick="capturarEscolha('Financiado')">
                 <img src="./../images/financiado.png" alt="Financiado">
                 <p>Financiado</p>
             </a>
 
             <!-- Opção 2: Quitado -->
-            <a href="./../dados/dados.html" class="option">
+            <a href="./../dados/dados.html" class="option" onclick="capturarEscolha('Quitado')">
                 <img src="./../images/quitado.png" alt="Quitado">
                 <p>Quitado</p>
             </a>
@@ -42,6 +42,20 @@
             </a>
         </div>
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

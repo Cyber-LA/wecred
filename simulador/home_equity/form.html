@@ -22,7 +22,7 @@
     <main>
         <h1>Home Equity</h1>
         <p>Quais os Valores da Operação?</p>
-        <form action="#" method="post" class="styled-form">
+        <form action="averbado.html" method="post" class="styled-form">
             <!-- Campo Valor Aproximado -->
             <div class="form-group">
                 <label for="valor-aprox">Valor Aproximado do Imóvel?</label>
@@ -50,6 +50,28 @@
             </div>
         </form>
     </main>
+
+    <script>
+        // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
+        const form = document.querySelector('form');
+            form.addEventListener('submit', function() {
+                // Capturar os valores dos campos
+                const valorAprox = document.getElementById('valor-aprox').value;
+                const valorEmprestimo = document.getElementById('valor-emprestimo').value;
+
+                // Recupera as escolhas atuais do sessionStorage
+                let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+                // Adiciona os valores digitáveis
+                escolhas.push({
+                    'Valor Aproximado do Imóvel': valorAprox,
+                    'Valor do Emprestimo': valorEmprestimo,
+                });
+
+                // Salva novamente no sessionStorage
+                sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+            });
+    </script>
 
     <script src="formulario.js"></script>
 
