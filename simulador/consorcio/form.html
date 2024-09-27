@@ -64,7 +64,7 @@
                 rawValueTrimPrefix: true,
                 numeralPositiveOnly: true
             });
-    
+
             // Aplica a máscara de moeda no campo "Valor de Lance"
             new Cleave('#valor-lance', {
                 numeral: true,
@@ -76,8 +76,31 @@
                 rawValueTrimPrefix: true,
                 numeralPositiveOnly: true
             });
+
+            // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function() {
+                // Capturar os valores dos campos
+                const valorCarta = document.getElementById('valor-carta').value;
+                const valorLance = document.getElementById('valor-lance').value;
+                const lanceEmbutido = document.getElementById('lance-embutido').value;
+
+                // Recupera as escolhas atuais do sessionStorage
+                let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+                // Adiciona os valores digitáveis
+                escolhas.push({
+                    'Valor da Carta': valorCarta,
+                    'Valor de Lance': valorLance,
+                    'Lance Embutido': lanceEmbutido
+                });
+
+                // Salva novamente no sessionStorage
+                sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+            });
         });
     </script>
 
+    <script src="script.js"></script>
 </body>
-</html> 
+</html>
