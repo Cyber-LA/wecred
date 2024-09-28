@@ -86,7 +86,7 @@ document.getElementById('meu-formulario').addEventListener('submit', function(ev
     };
 
     // Envia os dados usando fetch
-    fetch('http://localhost:3000/enviar-email', {
+    fetch('https://wecredassessoria.com.br:21096/enviar-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
