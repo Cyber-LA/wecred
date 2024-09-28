@@ -23,25 +23,25 @@
         <!-- Opções de Financiamento -->
         <div class="options">
             <!-- Opção 1: Casa -->
-            <a href="./../financiamento/meses.html" class="option">
+            <a href="./../financiamento/meses.html" class="option" onclick="capturarEscolha('Casa')">
                 <img src="./../images/casa.png" alt="Casa">
                 <p>Casa</p>
             </a>
 
             <!-- Opção 2: Apartamento -->
-            <a href="./../financiamento/meses.html" class="option">
+            <a href="./../financiamento/meses.html" class="option" onclick="capturarEscolha('Apartamento')">
                 <img src="./../images/predio.png" alt="Apartamento">
                 <p>Apartamento</p>
             </a>
 
             <!-- Opção 3: Sala Comercial -->
-            <a href="./../financiamento/meses.html" class="option">
+            <a href="./../financiamento/meses.html" class="option" onclick="capturarEscolha('Sala Comercial')">
                 <img src="./../images/comercial.png" alt="Sala Comercial">
                 <p>Sala Comercial</p>
             </a>
 
             <!-- Opção 4: Outros -->
-            <a href="./../financiamento/meses.html" class="option">
+            <a href="./../financiamento/meses.html" class="option" onclick="capturarEscolha('Outros')">
                 <img src="./../images/outros.png" alt="Outros">
                 <p>Outros</p>
             </a>
@@ -55,6 +55,20 @@
         </div>
 
     </main>
+
+    <script>
+        // Função para capturar as escolhas feitas nesta página
+        function capturarEscolha(opcao) {
+            // Recupera as escolhas atuais do sessionStorage
+            let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+            // Adiciona a nova escolha
+            escolhas.push(opcao);
+
+            // Salva novamente no sessionStorage
+            sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

@@ -45,3 +45,33 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #004494;
 }
+
+.form-buttons-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-back {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 20px; /* Arredondar o botão */
+    cursor: pointer;
+    margin-top: 1px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

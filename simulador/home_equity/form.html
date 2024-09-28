@@ -22,16 +22,23 @@
     <main>
         <h1>Home Equity</h1>
         <p>Quais os Valores da Operação?</p>
-        <form action="./../home_equity/averbado.html" method="post" class="styled-form">
+        <form action="averbado.html" method="post" class="styled-form">
             <!-- Campo Valor Aproximado -->
             <div class="form-group">
                 <label for="valor-aprox">Valor Aproximado do Imóvel?</label>
                 <input type="text" id="valor-aprox" name="valor-aprox" placeholder="Digite o valor aproximado do imóvel" required>
+                <small>Valor mínimo R$ 125.000</small> <!-- Adicionado o aviso -->
             </div>
-            <!-- Campo Valor do Emprestimo -->
+
+            <!-- Barra de Slider Dinâmica -->
             <div class="form-group">
-                <label for="valor-emprestimo">Valor do Empréstimo</label>
-                <input type="text" id="valor-emprestimo" name="valor-emprestimo" placeholder="Digite o valor do emprestimo" required>
+                <label for="slider-emprestimo">Valor do Empréstimo</label>
+                <input type="range" id="slider-emprestimo" name="slider-emprestimo" min="50000" value="0" step="1000" oninput="atualizarValorEmprestimo(this.value)">
+                <div class="range-labels">
+                    <span>Valor mínimo<br>R$ 50.000,00</span>
+                    <span>Valor máximo<br><span id="valor-maximo">R$ 0,00</span></span>
+                </div>
+                <input type="text" id="valor-emprestimo" name="valor-emprestimo" value="R$ 50.000,00" readonly>
             </div>
            
             <!-- Botões -->
@@ -45,32 +52,28 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Aplica a máscara de moeda no campo "Valor Aproximado"
-            new Cleave('#valor-aprox', {
-                numeral: true,
-                numeralDecimalMark: ',',
-                delimiter: '.',
-                numeralThousandsGroupStyle: 'thousand',
-                prefix: 'R$ ',
-                noImmediatePrefix: false,
-                rawValueTrimPrefix: true,
-                numeralPositiveOnly: true
+        // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
+        const form = document.querySelector('form');
+            form.addEventListener('submit', function() {
+                // Capturar os valores dos campos
+                const valorAprox = document.getElementById('valor-aprox').value;
+                const valorEmprestimo = document.getElementById('valor-emprestimo').value;
+
+                // Recupera as escolhas atuais do sessionStorage
+                let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+                // Adiciona os valores digitáveis
+                escolhas.push({
+                    'Valor Aproximado do Imóvel': valorAprox,
+                    'Valor do Emprestimo': valorEmprestimo,
+                });
+
+                // Salva novamente no sessionStorage
+                sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
             });
-    
-            // Aplica a máscara de moeda no campo "Valor do Empréstimo"
-            new Cleave('#valor-emprestimo', {
-                numeral: true,
-                numeralDecimalMark: ',',
-                delimiter: '.',
-                numeralThousandsGroupStyle: 'thousand',
-                prefix: 'R$ ',
-                noImmediatePrefix: false,
-                rawValueTrimPrefix: true,
-                numeralPositiveOnly: true
-            });
-        });
     </script>
 
+    <script src="formulario.js"></script>
+
 </body>
-</html> 
+</html>

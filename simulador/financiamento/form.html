@@ -25,7 +25,7 @@
         <form action="./../financiamento/negociacao.html" method="post" class="styled-form">
             <!-- Campo Valor da Imovel -->
             <div class="form-group">
-                <label for="valor-imovel">Valor do Imóvel?</label>
+                <label for="valor-imovel">Valor do Imóvel</label>
                 <input type="text" id="valor-imovel" name="valor-imovel" placeholder="Digite o valor do imóvel" required>
             </div>
             <!-- Campo Valor de Emprestimo -->
@@ -86,7 +86,31 @@
                 prefix: 'R$ ',
                 noImmediatePrefix: false,
                 rawValueTrimPrefix: true,
-                numeralPositiveOnly: true    
+                numeralPositiveOnly: true
+            
+                
+            });
+
+            // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function() {
+                // Capturar os valores dos campos
+                const valorImovel = document.getElementById('valor-imovel').value;
+                const valorEmprestimo = document.getElementById('valor-emprestimo').value;
+                const valorEntrada = document.getElementById('valor-entrada').value;
+
+                // Recupera as escolhas atuais do sessionStorage
+                let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
+
+                // Adiciona os valores digitáveis
+                escolhas.push({
+                    'Valor do Imovel': valorImovel,
+                    'Valor do Emprestimo': valorEmprestimo,
+                    'Valor de Entrada': valorEntrada
+                });
+
+                // Salva novamente no sessionStorage
+                sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
             });
         });
     </script>
