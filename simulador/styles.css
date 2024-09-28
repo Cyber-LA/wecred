@@ -50,6 +50,13 @@ p {
     margin-bottom: 30px;
 }
 
+#p-dados {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
 .options {
     display: flex;
     gap: 20px;
