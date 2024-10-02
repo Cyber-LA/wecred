@@ -24,10 +24,21 @@
         <h1>Home Equity</h1>
         <p>O Imóvel está Financiado ou Quitado?</p>
         <form action="./../dados/dados.html" class="styled-form">
+            <!-- Adicionar opções Sim e Não -->
+            <div class="form-group">
+                <label>Existe valor em aberto?</label>
+                <div>
+                    <input type="radio" id="sim" name="valor-em-aberto" value="Sim">
+                    <label for="sim">Sim</label>
+                    <input type="radio" id="nao" name="valor-em-aberto" value="Não" checked>
+                    <label for="nao">Não</label>
+                </div>
+            </div>
+            
             <!-- Campo Valor Aproximado -->
             <div class="form-group">
                 <label for="valor-aberto">Qual o valor do financiamento em aberto?</label>
-                <input type="text" id="valor-aberto" name="valor-aberto" placeholder="Digite o valor em aberto" required>
+                <input type="text" id="valor-aberto" name="valor-aberto" placeholder="Digite o valor em aberto" disabled>
             </div>
            
             <!-- Botões -->
@@ -43,7 +54,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Aplica a máscara de moeda no campo "Valor Aproximado"
-            new Cleave('#valor-aberto', {
+            const valorAbertoInput = new Cleave('#valor-aberto', {
                 numeral: true,
                 numeralDecimalMark: ',',
                 delimiter: '.',
@@ -54,26 +65,43 @@
                 numeralPositiveOnly: true
             });
 
+            // Obtendo os radio buttons e o campo de valor
+            const radioSim = document.getElementById('sim');
+            const radioNao = document.getElementById('nao');
+            const valorAberto = document.getElementById('valor-aberto');
+
+            // Evento para habilitar ou desabilitar o campo de valor com base na seleção
+            radioSim.addEventListener('change', function () {
+                valorAberto.disabled = !radioSim.checked;
+                if (!radioSim.checked) valorAberto.value = ''; // Limpa o valor quando não habilitado
+            });
+
+            radioNao.addEventListener('change', function () {
+                valorAberto.disabled = radioNao.checked;
+                if (radioNao.checked) valorAberto.value = ''; // Limpa o valor quando não habilitado
+            });
+
             // Captura os valores digitados e salva no sessionStorage ao enviar o formulário
             const form = document.querySelector('form');
             form.addEventListener('submit', function() {
                 // Capturar os valores dos campos
-                const valorAberto = document.getElementById('valor-aberto').value;
+                const temValorAberto = radioSim.checked ? "Sim" : "Não";
+                const valorAbertoValue = valorAberto.value;
 
                 // Recupera as escolhas atuais do sessionStorage
                 let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
 
                 // Adiciona os valores digitáveis
                 escolhas.push({
-                    'Valor em Aberto': valorAberto,
+                    'Existe valor em aberto': temValorAberto,
+                    'Valor em Aberto': valorAbertoValue,
                 });
 
                 // Salva novamente no sessionStorage
                 sessionStorage.setItem('escolhas', JSON.stringify(escolhas));
             });
-    
         });
     </script>
 
 </body>
-</html> 
+</html>
