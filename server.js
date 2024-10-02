@@ -3,8 +3,8 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Importa o pacote CORS
 const app = express();
-const port = 21096;
-const host = "wecredassessoria.com.br";
+const port = 3000;
+const host = "localhost";
 
 // Middleware para habilitar CORS
 app.use(cors());
@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 
 // Configurar o transporte de e-mail com o Nodemailer
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // ou outro serviço de e-mail
+  service: 'gmail',
   auth: {
-    user: 'formulario.012@gmail.com', // seu e-mail
-    pass: 'lpgh xbwh fbjj gbbi', // sua senha de e-mail
+    user: 'juunioor.romano@gmail.com', // Seu e-mail
+    pass: 'vinm adep vpto tsod', // Sua senha de e-mail (ou chave de aplicação)
   },
 });
 
@@ -26,7 +26,6 @@ const transporter = nodemailer.createTransport({
 function formatarEscolhasHTML(escolhas) {
   return escolhas.map((escolha, index) => {
     if (typeof escolha === 'object') {
-      // Se for um objeto (campos de formulário anteriores), formatar em HTML
       return `
         <h4>Opção ${index + 1}:</h4>
         <ul>
@@ -34,7 +33,6 @@ function formatarEscolhasHTML(escolhas) {
         </ul>
       `;
     } else {
-      // Se for uma string (escolha simples), exibir diretamente em HTML
       return `<p><strong>Opção ${index + 1}:</strong> ${escolha}</p>`;
     }
   }).join('');
@@ -42,18 +40,35 @@ function formatarEscolhasHTML(escolhas) {
 
 // Rota para o envio de e-mail
 app.post('/enviar-email', (req, res) => {
-  const { nome, cpf, dataNascimento, whatsapp, cep, estado, cidade, bairro, rua, numero, escolhasAnteriores } = req.body;
+  const {
+    nome,
+    cpf,
+    dataNascimento,
+    whatsapp,
+    cep,
+    estado,
+    cidade,
+    bairro,
+    rua,
+    numero,
+    estadoCivil,
+    nomeConjuge,
+    cpfConjuge,
+    dataNascimentoConjuge,
+    whatsappConjuge,
+    escolhasAnteriores
+  } = req.body;
 
   // Formatando as escolhas anteriores para inclusão no e-mail
   const escolhasFormatadasHTML = escolhasAnteriores ? formatarEscolhasHTML(escolhasAnteriores) : '<p>Nenhuma escolha anterior.</p>';
 
   // Configuração do e-mail a ser enviado
   const mailOptions = {
-    from: 'formulario.012@gmail.com', // Seu endereço de e-mail
-    to: 'central@wecredassessoria.com.br', // E-mail de destino
-    subject: 'Dados do Formulário',
+    from: 'juunioor.romano@gmail.com', // Seu endereço de e-mail
+    to: 'junior1991_5@hotmail.com', // E-mail de destino
+    subject: 'Dados do Formulário - Simulador WeCred',
     html: `
-      <h3>Dados do Formulário:</h3>
+      <h3>Dados do Formulário Principal:</h3>
       <p><strong>Nome Completo:</strong> ${nome}</p>
       <p><strong>CPF:</strong> ${cpf}</p>
       <p><strong>Data de Nascimento:</strong> ${dataNascimento}</p>
@@ -64,6 +79,15 @@ app.post('/enviar-email', (req, res) => {
       <p><strong>Bairro:</strong> ${bairro}</p>
       <p><strong>Rua:</strong> ${rua}</p>
       <p><strong>Número:</strong> ${numero}</p>
+      <p><strong>Estado Civil:</strong> ${estadoCivil}</p>
+
+      ${nomeConjuge ? `
+      <h3>Dados do Cônjuge:</h3>
+      <p><strong>Nome Completo (Parceiro):</strong> ${nomeConjuge}</p>
+      <p><strong>CPF (Parceiro):</strong> ${cpfConjuge}</p>
+      <p><strong>Data de Nascimento (Parceiro):</strong> ${dataNascimentoConjuge}</p>
+      <p><strong>Whatsapp (Parceiro):</strong> ${whatsappConjuge}</p>
+      ` : ''}
 
       <h3>Escolhas Anteriores:</h3>
       ${escolhasFormatadasHTML}

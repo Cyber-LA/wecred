@@ -58,11 +58,17 @@ function limparCamposEndereco() {
     document.getElementById('rua').value = '';
 }
 
-// Função para coletar os dados do sessionStorage e enviar junto com os dados do formulário
-document.getElementById('meu-formulario').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previne o envio padrão do formulário
+// Salvar escolha de estado civil no sessionStorage
+document.querySelectorAll('input[name="estado-civil"]').forEach((radio) => {
+    radio.addEventListener('change', function () {
+        sessionStorage.setItem('estadoCivil', radio.value);
+    });
+});
 
-    // Coleta os dados do formulário atual
+// Lógica para coleta e envio dos dados
+document.getElementById('meu-formulario').addEventListener('submit', function (event) {
+    event.preventDefault();
+
     const formData = {
         nome: document.getElementById('nome-completo').value,
         cpf: document.getElementById('cpf').value,
@@ -73,61 +79,80 @@ document.getElementById('meu-formulario').addEventListener('submit', function(ev
         cidade: document.getElementById('cidade').value,
         bairro: document.getElementById('bairro').value,
         rua: document.getElementById('rua').value,
-        numero: document.getElementById('numero').value
+        numero: document.getElementById('numero').value,
+        estadoCivil: sessionStorage.getItem('estadoCivil')
     };
 
-    // Recupera os dados armazenados nas páginas anteriores (sessionStorage)
+    let conjugeData = {};
+    const conjugeFields = document.querySelector('.form-section:last-child');
+    if (conjugeFields && conjugeFields.querySelector('#nome-completo-conjuge')) {
+        conjugeData = {
+            nomeConjuge: conjugeFields.querySelector('#nome-completo-conjuge').value,
+            cpfConjuge: conjugeFields.querySelector('#cpf-conjuge').value,
+            dataNascimentoConjuge: conjugeFields.querySelector('#data-nascimento-conjuge').value,
+            whatsappConjuge: conjugeFields.querySelector('#whatsapp-conjuge').value
+        };
+    }
+
     let escolhas = JSON.parse(sessionStorage.getItem('escolhas')) || [];
 
-    // Combina os dados do formulário atual com os dados anteriores
     const dadosCompletos = {
         ...formData,
+        ...conjugeData,
         escolhasAnteriores: escolhas
     };
 
-    // Envia os dados usando fetch
-    fetch('https://wecredassessoria.com.br:21096/enviar-email', {
+    fetch('http://localhost:3000/enviar-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(dadosCompletos)
     })
-    .then(response => response.text())
-    .then(data => {
-        sessionStorage.clear(); // Limpa o sessionStorage após o envio
-        // Após o envio com sucesso, redireciona para a página de confirmação
-        window.location.href = 'success.html';
-    })
-    .catch(error => {
-        alert('Erro ao enviar o formulário. Tente novamente.');
-        console.error('Erro:', error);
-    });
+        .then((response) => response.text())
+        .then((data) => {
+            sessionStorage.clear();
+            window.location.href = 'success.html';
+        })
+        .catch((error) => {
+            alert('Erro ao enviar o formulário. Tente novamente.');
+            console.error('Erro:', error);
+        });
 });
 
 // Lógica para duplicar o formulário quando "Casado" for selecionado
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const estadoCivilRadios = document.querySelectorAll('input[name="estado-civil"]');
     const formSections = document.getElementById('form-sections');
-    
-    estadoCivilRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
+
+    estadoCivilRadios.forEach((radio) => {
+        radio.addEventListener('change', function () {
             if (radio.value === 'casado') {
-                // Cria uma nova seção duplicada com o mesmo conteúdo
                 const newSection = document.createElement('div');
                 newSection.classList.add('form-section');
-                newSection.innerHTML = formSections.children[0].innerHTML;
-                
-                // Renomeia IDs dos campos da nova seção para evitar conflitos
-                newSection.querySelectorAll('input').forEach((input, index) => {
-                    input.id = input.id + '-conjuge';
-                    input.name = input.name + '-conjuge'; // Ajusta o atributo "name"
-                    input.placeholder += ' (Parceiro)';
-                });
-
+                newSection.innerHTML = `
+                    <div class="form-group">
+                        <label for="nome-completo-conjuge">Nome Completo (Cônjuge)</label>
+                        <input type="text" id="nome-completo-conjuge" name="nome-completo-conjuge" placeholder="Nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf-conjuge">CPF (Cônjuge)</label>
+                        <input type="text" id="cpf-conjuge" name="cpf-conjuge" placeholder="000.000.000-00" maxlength="14" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data-nascimento-conjuge">Data de Nascimento (Cônjuge)</label>
+                        <input type="text" id="data-nascimento-conjuge" name="data-nascimento-conjuge" placeholder="00/00/0000" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp-conjuge">Whatsapp (Cônjuge)</label>
+                        <input type="text" id="whatsapp-conjuge" name="whatsapp-conjuge" placeholder="(00) 00000-0000" maxlength="15" required>
+                    </div>
+                `;
                 formSections.appendChild(newSection);
+
+                // Adiciona máscara nos campos do cônjuge
+                adicionarMascaraNosCamposConjuge();
             } else {
-                // Remove a seção duplicada, se presente
                 if (formSections.children.length > 1) {
                     formSections.removeChild(formSections.lastElementChild);
                 }
@@ -135,3 +160,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Função para adicionar as máscaras nos campos do cônjuge
+function adicionarMascaraNosCamposConjuge() {
+    document.getElementById('cpf-conjuge').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        value = value.replace(/(\d{3})(\d)/, "$1.$2");
+        value = value.replace(/(\d{3})(\d)/, "$1.$2");
+        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        e.target.value = value.slice(0, 14);
+    });
+
+    document.getElementById('whatsapp-conjuge').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+        value = value.replace(/(\d{5})(\d)/, "$1-$2");
+        e.target.value = value.slice(0, 15);
+    });
+
+    document.getElementById('data-nascimento-conjuge').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        value = value.replace(/(\d{2})(\d)/, "$1/$2");
+        value = value.replace(/(\d{2})(\d)/, "$1/$2");
+        e.target.value = value.slice(0, 10);
+    });
+}
