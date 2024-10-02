@@ -1,4 +1,4 @@
-// Máscaras para CPF, Telefone, Data de Nascimento e CEP (mantido como no arquivo original)
+// Máscaras para CPF, Telefone, Data de Nascimento e CEP
 document.getElementById('cpf').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, "");
     value = value.replace(/(\d{3})(\d)/, "$1.$2");
@@ -95,14 +95,43 @@ document.getElementById('meu-formulario').addEventListener('submit', function(ev
     })
     .then(response => response.text())
     .then(data => {
-        
         sessionStorage.clear(); // Limpa o sessionStorage após o envio
-
         // Após o envio com sucesso, redireciona para a página de confirmação
         window.location.href = 'success.html';
     })
     .catch(error => {
         alert('Erro ao enviar o formulário. Tente novamente.');
         console.error('Erro:', error);
+    });
+});
+
+// Lógica para duplicar o formulário quando "Casado" for selecionado
+document.addEventListener('DOMContentLoaded', function() {
+    const estadoCivilRadios = document.querySelectorAll('input[name="estado-civil"]');
+    const formSections = document.getElementById('form-sections');
+    
+    estadoCivilRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (radio.value === 'casado') {
+                // Cria uma nova seção duplicada com o mesmo conteúdo
+                const newSection = document.createElement('div');
+                newSection.classList.add('form-section');
+                newSection.innerHTML = formSections.children[0].innerHTML;
+                
+                // Renomeia IDs dos campos da nova seção para evitar conflitos
+                newSection.querySelectorAll('input').forEach((input, index) => {
+                    input.id = input.id + '-conjuge';
+                    input.name = input.name + '-conjuge'; // Ajusta o atributo "name"
+                    input.placeholder += ' (Parceiro)';
+                });
+
+                formSections.appendChild(newSection);
+            } else {
+                // Remove a seção duplicada, se presente
+                if (formSections.children.length > 1) {
+                    formSections.removeChild(formSections.lastElementChild);
+                }
+            }
+        });
     });
 });
