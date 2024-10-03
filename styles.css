@@ -25,7 +25,6 @@ body {
 .floating-button.rectangular-button {
     position: fixed;
     bottom: 100px; /* Ajuste conforme necessário */
-    right: 20px; /* Ajuste conforme necessário */
     background-color: hsl(0, 0%, 100%); /* Cor de fundo */
     color: white; /* Cor do texto */
     width: 60px; /* Largura inicial */
@@ -482,3 +481,94 @@ footer .social-icons img {
     max-width: 200px;
     height: auto;
 }
+
+/* Regras para acesso com celular */
+
+
+/* Ajustes gerais de largura e overflow */
+body, html {
+    width: 100%; /* Garante que o body ocupe 100% da tela */
+    overflow-x: hidden; /* Remove qualquer overflow horizontal */
+}
+
+.container {
+    max-width: 100%; /* Garante que o container principal não exceda a tela */
+}
+
+/* Ajuste no menu e cabeçalho */
+header .container {
+    width: 100%; /* Cabeçalho ocupa toda a largura */
+    padding: 0 15px; /* Pequeno padding para não encostar nas bordas */
+}
+
+/* Ajuste nos botões flutuantes */
+.floating-button, .whatsapp-float {
+    right: 10px; /* Aproxima um pouco mais da borda */
+}
+
+/* Menu Hamburger - Estilo para Mobile */
+.menu-toggle {
+    display: none; /* Esconde o menu toggle no desktop */
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Exibir o botão no celular */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 30px;
+        color: white;
+    }
+
+    /* Esconder os itens do menu inicialmente */
+    .navbar ul {
+        display: none; /* Esconder o menu */
+        flex-direction: column; /* Colocar itens em coluna */
+        text-align: center;
+        position: absolute;
+        background-color: #1e1e1e;
+        top: 60px;
+        right: 0;
+        width: 100%;
+    }
+
+    /* Mostrar o menu quando ativo */
+    .navbar ul.active {
+        display: flex; /* Mostra o menu */
+    }
+
+    /* Ajustar links do menu para ocupar toda a largura */
+    .navbar ul li {
+        display: block;
+        margin: 10px 0; /* Espaçamento entre os itens */
+    }
+
+    .navbar ul li a {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* Ajustes no Rodapé apenas para telas pequenas */
+    footer {
+        min-height: 200px; /* Garante altura mínima para o rodapé */
+        flex-wrap: wrap; /* Permite quebra de linha nos elementos */
+        text-align: center; /* Centraliza o conteúdo em telas pequenas */
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column; /* Empilha os elementos no celular */
+        align-items: center; /* Centraliza os itens */
+        gap: 20px; /* Espaçamento entre os elementos */
+    }
+
+    .footer-contact p,
+    .social-container {
+        margin: 10px 0; /* Espaçamento entre os itens do rodapé */
+    }
+}
+
