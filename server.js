@@ -3,8 +3,7 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Importa o pacote CORS
 const app = express();
-const port = 3000;
-const host = "localhost";
+const port = 21096;
 
 // Middleware para habilitar CORS
 app.use(cors());
@@ -107,6 +106,6 @@ app.post('/enviar-email', (req, res) => {
 });
 
 // Inicia o servidor
-app.listen(port, host, () => {
-  console.log(`Servidor rodando em http://${host}:${port}`);
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
